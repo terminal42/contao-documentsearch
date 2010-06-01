@@ -33,8 +33,12 @@ class DocumentSearch extends Frontend
 	 * Add documents to the indexer
 	 * Basically, this is the same as getSearchablePages, but we need this special hook to disable certain document elements
 	 */
-	public function getSearchableDocuments($arrPages)
+	public function getSearchableDocuments($arrPages, $intRoot=0)
 	{
+		// Do not add documents to XML sitemap
+		if ($intRoot > 0)
+			return $arrPages;
+			
 		$GLOBALS['TL_CONFIG']['searchDocuments'] = deserialize($GLOBALS['TL_CONFIG']['searchDocuments']);
 		
 		// HOOK: find documents
