@@ -88,6 +88,7 @@ class DocumentIndexer extends Frontend
 						'groups'	=> ($this->Input->get('groups') ? deserialize(rawurldecode($this->Input->get('groups'))) : $objPage->groups),
 						'pid'		=> $objPage->id,
 						'filesize'	=> $objFile->filesize/1024,
+						'language'	=> $objPage->language,
 					);
 					
 					$callback = $GLOBALS['TL_DOCUMENT_SEARCH'][$objFile->extension];
