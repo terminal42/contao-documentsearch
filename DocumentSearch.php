@@ -121,7 +121,7 @@ class DocumentSearch extends Frontend
 					{
 						foreach( scan(TL_ROOT.'/'.$strFile) as $strSub )
 						{
-							if (!is_file(TL_ROOT.'/'.$strFile.'/'.$strSub))
+							if (!is_file(TL_ROOT.'/'.$strFile.'/'.$strSub) || strpos($strFile, '.') === 0)
 								continue;
 								
 							$this->parseMetaFile(dirname($strFile.'/'.$strSub), true);
