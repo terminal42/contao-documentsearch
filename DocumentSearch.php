@@ -42,10 +42,7 @@ class DocumentSearch extends Frontend
 		$GLOBALS['TL_CONFIG']['searchDocuments'] = deserialize($GLOBALS['TL_CONFIG']['searchDocuments']);
 		
 		// HOOK: find documents
-		if (array_key_exists('getSearchableDocuments', $GLOBALS['TL_HOOKS']) && 
-			is_array($GLOBALS['TL_HOOKS']['getSearchableDocuments']) && 
-			is_array($GLOBALS['TL_CONFIG']['searchDocuments']) &&
-			count($GLOBALS['TL_CONFIG']['searchDocuments']) > 0)
+		if (array_key_exists('getSearchableDocuments', $GLOBALS['TL_HOOKS']) && is_array($GLOBALS['TL_HOOKS']['getSearchableDocuments']) && is_array($GLOBALS['TL_CONFIG']['searchDocuments']) && count($GLOBALS['TL_CONFIG']['searchDocuments']) > 0)
 		{
 			foreach ($GLOBALS['TL_HOOKS']['getSearchableDocuments'] as $name => $callback)
 			{
@@ -72,8 +69,7 @@ class DocumentSearch extends Frontend
 		$this->import('Session');
 		
 		// search all content elements "Download" and "Downloads"
-		$objElements = $this->Database->prepare("SELECT DISTINCT tl_content.*, tl_page.id AS page_id FROM tl_content, tl_article LEFT JOIN tl_page ON tl_article.pid = tl_page.id WHERE tl_content.pid=tl_article.id AND (tl_content.type=? OR tl_content.type=?)")
-									  ->execute('download', 'downloads');
+		$objElements = $this->Database->execute("SELECT DISTINCT tl_content.*, tl_page.id AS page_id FROM tl_content, tl_article LEFT JOIN tl_page ON tl_article.pid = tl_page.id WHERE tl_content.pid=tl_article.id AND (tl_content.type='download' OR tl_content.type='downloads')");
 		
 		// no elements available		 
 		if ($objElements->numRows == 0) 
@@ -89,14 +85,14 @@ class DocumentSearch extends Frontend
 				if (!file_exists(TL_ROOT.'/'.$objElements->singleSRC))
 					continue;
 					
-				$strUrl = preg_replace('@^(index.php/)?([^\?]+)(\?.*)?@i', '$2', $this->generateFrontendUrl($this->Database->prepare("SELECT * FROM tl_page WHERE id=?")->execute($objElements->page_id)->fetchAssoc())). (($GLOBALS['TL_CONFIG']['disableAlias'] && $this->Input->get('id')) ? '&amp;' : '?') . 'file=' . $this->urlEncode($objElements->singleSRC);
+				$strUrl = $this->generateFrontendUrl($this->Database->prepare("SELECT * FROM tl_page WHERE id=?")->execute($objElements->page_id)->fetchAssoc()). (($GLOBALS['TL_CONFIG']['disableAlias'] && $this->Input->get('id')) ? '&amp;' : '?') . 'file=' . $this->urlEncode($objElements->singleSRC);
 				
 				if (!strlen($objElements->linkTitle))
 				{
 					$objElements->linkTitle = basename($objElements->singleSRC);
 				}
 				
-				$arrPages[] = sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s', 
+				$arrPages[] = $this->Environment->base . sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s', 
 								$this->urlEncode($objElements->singleSRC),
 								$objElements->page_id,
 								$strUrl,
@@ -109,7 +105,7 @@ class DocumentSearch extends Frontend
 			{
 				$arrDownloads = deserialize($objElements->multiSRC);
 				
-				$strUrl = preg_replace('@^(index.php/)?([^\?]+)(\?.*)?@i', '$2', $this->generateFrontendUrl($this->Database->prepare("SELECT * FROM tl_page WHERE id=?")->execute($objElements->page_id)->fetchAssoc())). (($GLOBALS['TL_CONFIG']['disableAlias'] && $this->Input->get('id')) ? '&amp;' : '?') . 'file=';
+				$strUrl = $this->generateFrontendUrl($this->Database->prepare("SELECT * FROM tl_page WHERE id=?")->execute($objElements->page_id)->fetchAssoc()). (($GLOBALS['TL_CONFIG']['disableAlias'] && $this->Input->get('id')) ? '&amp;' : '?') . 'file=';
 				
 				foreach( $arrDownloads as $strFile )
 				{
@@ -127,7 +123,7 @@ class DocumentSearch extends Frontend
 							$this->parseMetaFile(dirname($strFile.'/'.$strSub), true);
 							$strTitle = strlen($this->arrMeta[basename($strSub)][0]) ? $this->arrMeta[basename($strSub)][0] : specialchars(basename($strSub));
 						
-							$arrPages[] = sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s', 
+							$arrPages[] = $this->Environment->base . sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s%s', 
 											$this->urlEncode($strFile.'/'.$strSub),
 											$objElements->page_id,
 											$strUrl . $this->urlEncode($strFile.'/'.$strSub),
@@ -141,7 +137,7 @@ class DocumentSearch extends Frontend
 					$this->parseMetaFile(dirname($strFile), true);
 					$strTitle = strlen($this->arrMeta[basename($strFile)][0]) ? $this->arrMeta[basename($strFile)][0] : specialchars(basename($strFile));
 				
-					$arrPages[] = sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s', 
+					$arrPages[] = sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s%s', 
 									$this->urlEncode($strFile),
 									$objElements->page_id,
 									$strUrl . $this->urlEncode($strFile),
@@ -200,7 +196,7 @@ class DocumentSearch extends Frontend
 
 			system($strCommand, $returnCode);
 			
-			if ($returnCode != 0)
+			if (is_null($returnCode) || $returnCode != 0)
 				return false;
 		}
 
