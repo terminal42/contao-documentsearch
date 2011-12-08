@@ -38,11 +38,21 @@ class DocumentSearch extends Frontend
 		// Do not add documents to XML sitemap
 		if ($intRoot > 0)
 			return $arrPages;
+		
+		$strDomain = $this->Environment->base;
+		
+		// Try to find any available root page with a domain, doesnt matter which one we use
+		$objDomain = $this->Database->prepare("SELECT dns FROM tl_page WHERE type='root' AND dns!=''")->limit(1)->execute();
+		
+		if ($objDomain->numRows)
+		{
+			$strDomain = ($this->Environment->ssl ? 'https://' : 'http://') . $objDomain->dns . '/';
+		}
 			
 		$GLOBALS['TL_CONFIG']['searchDocuments'] = deserialize($GLOBALS['TL_CONFIG']['searchDocuments']);
 		
 		// HOOK: find documents
-		if (array_key_exists('getSearchableDocuments', $GLOBALS['TL_HOOKS']) && is_array($GLOBALS['TL_HOOKS']['getSearchableDocuments']) && is_array($GLOBALS['TL_CONFIG']['searchDocuments']) && count($GLOBALS['TL_CONFIG']['searchDocuments']) > 0)
+		if (is_array($GLOBALS['TL_HOOKS']['getSearchableDocuments']) && !empty($GLOBALS['TL_CONFIG']['searchDocuments']))
 		{
 			foreach ($GLOBALS['TL_HOOKS']['getSearchableDocuments'] as $name => $callback)
 			{
@@ -52,7 +62,7 @@ class DocumentSearch extends Frontend
 				}
 				
 				$this->import($callback[0]);
-				$arrPages = $this->$callback[0]->$callback[1]($arrPages);
+				$arrPages = $this->$callback[0]->$callback[1]($arrPages, $strDomain);
 			}
 		}
 			
@@ -63,7 +73,7 @@ class DocumentSearch extends Frontend
 	/**
 	 * List content element "download" and "downloads" files for indexing
 	 */
-	public function getDownloadElements($arrPages)
+	public function getDownloadElements($arrPages, $strDomain)
 	{
 		$this->import('Database');
 		$this->import('Session');
@@ -92,7 +102,7 @@ class DocumentSearch extends Frontend
 					$objElements->linkTitle = basename($objElements->singleSRC);
 				}
 				
-				$arrPages[] = $this->Environment->base . sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s', 
+				$arrPages[] = $strDomain . sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s', 
 								$this->urlEncode($objElements->singleSRC),
 								$objElements->page_id,
 								$strUrl,
@@ -123,7 +133,7 @@ class DocumentSearch extends Frontend
 							$this->parseMetaFile(dirname($strFile.'/'.$strSub), true);
 							$strTitle = strlen($this->arrMeta[basename($strSub)][0]) ? $this->arrMeta[basename($strSub)][0] : specialchars(basename($strSub));
 						
-							$arrPages[] = $this->Environment->base . sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s%s', 
+							$arrPages[] = $strDomain . sprintf('system/modules/documentsearch/indexer.php?file=%s&pid=%s&url=%s&title=%s%s', 
 											$this->urlEncode($strFile.'/'.$strSub),
 											$objElements->page_id,
 											$strUrl . $this->urlEncode($strFile.'/'.$strSub),
@@ -154,7 +164,7 @@ class DocumentSearch extends Frontend
 	/**
 	 * List news enclosures for indexing
 	 */
-	public function getNewsEnclosures($arrPages)
+	public function getNewsEnclosures($arrPages, $strDomain)
 	{
 		return $arrPages;
 	}
@@ -163,7 +173,7 @@ class DocumentSearch extends Frontend
 	/**
 	 * List calendar enclosures for indexing
 	 */
-	public function getCalendarEnclosures($arrPages)
+	public function getCalendarEnclosures($arrPages, $strDomain)
 	{
 		return $arrPages;
 	}
