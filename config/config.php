@@ -31,8 +31,8 @@
  */
 $GLOBALS['TL_HOOKS']['getSearchablePages'][]				= array('DocumentSearch', 'getSearchableDocuments');
 $GLOBALS['TL_HOOKS']['getSearchableDocuments']['download']	= array('DocumentSearch', 'getDownloadElements');
-$GLOBALS['TL_HOOKS']['getSearchableDocuments']['news']		= array('DocumentSearch', 'getNewsEnclosures');
-$GLOBALS['TL_HOOKS']['getSearchableDocuments']['calendar']	= array('DocumentSearch', 'getCalendarEnclosures');
+//$GLOBALS['TL_HOOKS']['getSearchableDocuments']['news']		= array('DocumentSearch', 'getNewsEnclosures');
+//$GLOBALS['TL_HOOKS']['getSearchableDocuments']['calendar']	= array('DocumentSearch', 'getCalendarEnclosures');
 
 
 /**
