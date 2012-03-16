@@ -225,11 +225,14 @@ class DocumentSearch extends Frontend
 	*/
 	public function extractDOC($objFile)
 	{
+		if ($GLOBALS['TL_CONFIG']['searchToolDOC'] == '')
+			return false;
+
 		$arrContent = array();
-		$strCommand = 'catdoc "'.$objFile->dirname.'/'.$objFile->basename.'"';
-		
+		$strCommand = $GLOBALS['TL_CONFIG']['searchToolDOC'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'"';
+
 		exec($strCommand, $arrContent, $returnCode);
-		
+
 		if ($returnCode != 0)
 			return false;
 
@@ -244,8 +247,11 @@ class DocumentSearch extends Frontend
 	*/
 	public function extractPPT($objFile)
 	{
+		if ($GLOBALS['TL_CONFIG']['searchToolPPT'] == '')
+			return false;
+
 		$arrContent = array();
-		$strCommand = 'ppthtml "'.$objFile->dirname.'/'.$objFile->basename.'"';
+		$strCommand = $GLOBALS['TL_CONFIG']['searchToolPPT'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'"';
 		
 		exec($strCommand, $arrContent, $returnCode);
 		

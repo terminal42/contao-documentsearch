@@ -29,7 +29,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] = str_replace('indexProtected', 'indexProtected,searchExtensions,searchDocuments,searchToolPDF', $GLOBALS['TL_DCA']['tl_settings']['palettes']['default']);
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] = str_replace('indexProtected', 'indexProtected,searchExtensions,searchDocuments,searchToolPDF,searchToolDOC,searchToolPPT', $GLOBALS['TL_DCA']['tl_settings']['palettes']['default']);
 
 
 /**
@@ -56,6 +56,20 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['searchDocuments'] = array
 $GLOBALS['TL_DCA']['tl_settings']['fields']['searchToolPDF'] = array
 (
 	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchToolPDF'],
+	'inputType'		=> 'text',
+	'eval'			=> array('tl_class'=>'w50'),
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['searchToolDOC'] = array
+(
+	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchToolDOC'],
+	'inputType'		=> 'text',
+	'eval'			=> array('tl_class'=>'w50'),
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['searchToolPPT'] = array
+(
+	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchToolPPT'],
 	'inputType'		=> 'text',
 	'eval'			=> array('tl_class'=>'w50'),
 );
