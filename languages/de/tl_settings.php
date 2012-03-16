@@ -31,4 +31,5 @@
  */
 $GLOBALS['TL_LANG']['tl_settings']['searchExtensions']		= array('Dateierweiterungen die indexiert werden sollen', 'Bitte wählen Sie die Dateierweiterungen aus welche bei der Suche indexiert werden sollen.<br />Nicht aufgeführte Dateiendungen werden nicht unterstützt oder benötigen zusätzliche Module.');
 $GLOBALS['TL_LANG']['tl_settings']['searchDocuments']		= array('Dateiorte die durchsucht werden sollen', 'Bitte wählen Sie die Speicherorte aus, welche bei der Suchindexierung berücksichtigt werden sollen.');
+$GLOBALS['TL_LANG']['tl_settings']['searchToolPDF']			= array('Pfad zum "pdftotext" Programm', 'Bitte geben Sie den absoluten Pfad zum PDF-Konverter ein.');
 

@@ -201,11 +201,13 @@ class DocumentSearch extends Frontend
 		
 		if (!file_exists($strTempFile))
 		{
-//			$strCommand = '"'.TL_ROOT.'/system/modules/documentsearch/tools/pdf/pdftotext" "'.$objFile->dirname.'/'.$objFile->basename.'" "'.$strTempFile.'"';
-			$strCommand = 'pdftotext "'.$objFile->dirname.'/'.$objFile->basename.'" "'.$strTempFile.'"';
+			if ($GLOBALS['TL_CONFIG']['searchToolPDF'] == '')
+				return false;
+
+			$strCommand = $GLOBALS['TL_CONFIG']['searchToolPDF'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'" "'.$strTempFile.'"';
 
 			system($strCommand, $returnCode);
-			
+
 			if (is_null($returnCode) || $returnCode != 0)
 				return false;
 		}

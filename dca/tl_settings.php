@@ -29,7 +29,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] = str_replace('indexProtected', 'indexProtected,searchExtensions,searchDocuments', $GLOBALS['TL_DCA']['tl_settings']['palettes']['default']);
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] = str_replace('indexProtected', 'indexProtected,searchExtensions,searchDocuments,searchToolPDF', $GLOBALS['TL_DCA']['tl_settings']['palettes']['default']);
 
 
 /**
@@ -51,5 +51,12 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['searchDocuments'] = array
 	'options'		=> array_keys($GLOBALS['TL_HOOKS']['getSearchableDocuments']),
 	'reference'		=> &$GLOBALS['TL_LANG']['MSC']['searchDocuments'],
 	'eval'			=> array('multiple'=>true, 'tl_class'=>'clr'),
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['searchToolPDF'] = array
+(
+	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchToolPDF'],
+	'inputType'		=> 'text',
+	'eval'			=> array('tl_class'=>'w50'),
 );
 
