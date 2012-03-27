@@ -113,13 +113,13 @@ class DocumentSearch extends Frontend
 			// index "downloads" elemens
 			else
 			{
-				$arrDownloads = deserialize($objElements->multiSRC);
+				$arrDownloads = deserialize($objElements->multiSRC, true);
 				
 				$strUrl = $this->generateFrontendUrl($this->Database->prepare("SELECT * FROM tl_page WHERE id=?")->execute($objElements->page_id)->fetchAssoc()). (($GLOBALS['TL_CONFIG']['disableAlias'] && $this->Input->get('id')) ? '&amp;' : '?') . 'file=';
 				
 				foreach( $arrDownloads as $strFile )
 				{
-					if (!file_exists(TL_ROOT.'/'.$strFile))
+					if ($strFile == '' || !file_exists(TL_ROOT.'/'.$strFile))
 						continue;
 						
 					// Files in directory
