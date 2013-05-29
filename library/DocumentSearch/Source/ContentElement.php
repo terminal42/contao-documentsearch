@@ -105,8 +105,7 @@ class ContentElement extends \Frontend implements SourceInterface
 
     protected function generateIndexerUri($domain, $fileModel, $contentElement, $language)
     {
-        $strUrl = \Environment::get('base');
-        $strUrl .= \Controller::generateFrontendUrl(
+        $strUrl = \Controller::generateFrontendUrl(
             \Database::getInstance()->prepare("SELECT * FROM tl_page WHERE id=?")->execute($contentElement->page_id)->row(),
             null,
             $language
