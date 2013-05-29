@@ -34,7 +34,7 @@ class Text implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($objFile)
+    public function extract($fileModel)
     {
         return $objFile->getContent();
     }

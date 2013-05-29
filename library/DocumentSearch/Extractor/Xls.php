@@ -34,7 +34,7 @@ class Xls implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($objFile)
+    public function extract($fileModel)
     {
         try
         {

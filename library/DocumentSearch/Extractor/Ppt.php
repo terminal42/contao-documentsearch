@@ -37,7 +37,7 @@ class Ppt implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($objFile)
+    public function extract($fileModel)
     {
         $arrContent = array();
         $strCommand = $GLOBALS['TL_CONFIG']['searchToolPPT'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'"';

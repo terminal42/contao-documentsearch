@@ -34,7 +34,7 @@ class Doc implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($objFile)
+    public function extract($fileModel)
     {
         if ($GLOBALS['TL_CONFIG']['searchToolDOC'] == '')
             return '';

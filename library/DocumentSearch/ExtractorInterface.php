@@ -28,10 +28,10 @@ interface ExtractorInterface
     public function isEnabledForExtension($extension);
 
     /**
-     * Extract the string content from the given file
+     * Extract the string content from the given file model
      *
-     * @param \File
+     * @param \FilesModel
      * @return string
      */
-    public function extract($file);
+    public function extract($fileModel);
 }

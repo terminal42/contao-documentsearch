@@ -34,7 +34,7 @@ class Pdf implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($objFile)
+    public function extract($fileModel)
     {
         $strTempFile = TL_ROOT.'/system/tmp/'.md5(print_r($objFile, true));
 
