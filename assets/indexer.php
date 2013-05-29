@@ -67,10 +67,19 @@ class DocumentIndexer extends \Frontend
                         continue;
                     }
 
+                    // Title
+                    if (\Input::get('title') !== '') {
+                        $strTitle = \Input::get('title');
+                    } elseif ($pageModel->pageTitle !== '') {
+                        $strTitle = $pageModel->pageTitle;
+                    } else {
+                        $strTitle = $pageModel->title;
+                    }
+
                     $arrData = array
                     (
                         'url'           => \Input::get('url'),
-                        'title'         => (\Input::get('title') !== '') ? \Input::get('title') : ($pageModel->pageTitle !== '') ? $pageModel->pageTitle : $pageModel->title,
+                        'title'         => $strTitle,
                         'protected'     => (\Input::get('groups') ? '1' : ($pageModel->protected ? '1' : '')),
                         'groups'        => (\Input::get('groups') ? deserialize(rawurldecode(\Input::get('groups'))) : $pageModel->groups),
                         'pid'           => $pageModel->id,
