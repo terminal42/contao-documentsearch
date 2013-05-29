@@ -79,7 +79,6 @@ class DocumentIndexer extends \Frontend
                         'content'       => $extractor->extract($fileModel)
                     );
 
-                    //var_dump($arrData);exit;
                     \Search::indexPage($arrData);
                 }
             }
