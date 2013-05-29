@@ -76,7 +76,7 @@ class DocumentIndexer extends \Frontend
                         'pid'           => $pageModel->id,
                         'filesize'      => $objFile->filesize/1024,
                         'language'      => $pageModel->rootLanguage,
-                        'content'       => $extractor->extract($objFile)
+                        'content'       => $extractor->extract($fileModel)
                     );
 
                     //var_dump($arrData);exit;
