@@ -30,5 +30,6 @@ ClassLoader::addClasses(array
     'DocumentSearch\Extractor\Rtf'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Rtf.php',
     'DocumentSearch\Extractor\Text'                    => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Text.php',
     'DocumentSearch\Extractor\Xls'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Xls.php',
+    'DocumentSearch\Extractor\Keywords'                => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Keywords.php',
     'DocumentSearch\Source\ContentElement'             => 'system/modules/documentsearch/library/DocumentSearch/Source/ContentElement.php'
 ));
