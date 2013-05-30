@@ -27,6 +27,7 @@ class Ppt implements ExtractorInterface
      */
     public function isEnabledForExtension($ext)
     {
+        // if there is no indexer tool, it is never enabled
         if ($GLOBALS['TL_CONFIG']['searchToolPPT'] == '')
             return false;
 
@@ -39,6 +40,7 @@ class Ppt implements ExtractorInterface
      */
     public function extract($fileModel)
     {
+        $objFile = new \File($fileModel->path);
         $arrContent = array();
         $strCommand = $GLOBALS['TL_CONFIG']['searchToolPPT'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'"';
 

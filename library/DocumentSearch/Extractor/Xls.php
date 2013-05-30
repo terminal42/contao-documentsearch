@@ -36,23 +36,22 @@ class Xls implements ExtractorInterface
      */
     public function extract($fileModel)
     {
+        $objFile = new \File($fileModel->path);
+
         try
         {
-            require_once('tools/xls/excel_reader.php');
+            require_once(TL_ROOT . '/system/modules/documentsearch/tools/xls/excel_reader.php');
 
             $strBuffer = '';
 
-            $objReader = new Spreadsheet_Excel_Reader();
+            $objReader = new \Spreadsheet_Excel_Reader();
             $objReader->setOutputEncoding('UTF-8');
 
             $objReader->read($objFile->dirname.'/'.$objFile->basename);
 
-            foreach( $objReader->sheets as $sheet )
-            {
-                foreach( $sheet['cells'] as $row )
-                {
-                    foreach( $row as $cell )
-                    {
+            foreach ($objReader->sheets as $sheet) {
+                foreach($sheet['cells'] as $row) {
+                    foreach($row as $cell) {
                         $strBuffer .= $cell.';';
                     }
 
@@ -64,7 +63,7 @@ class Xls implements ExtractorInterface
         }
         catch (Exception $e)
         {
-            return false;
+            return '';
         }
 
         return $strBuffer;

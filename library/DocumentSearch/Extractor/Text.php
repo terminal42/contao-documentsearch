@@ -36,6 +36,7 @@ class Text implements ExtractorInterface
      */
     public function extract($fileModel)
     {
+        $objFile = new \File($fileModel->path);
         return $objFile->getContent();
     }
 }

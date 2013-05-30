@@ -27,18 +27,21 @@ class Doc implements ExtractorInterface
      */
     public function isEnabledForExtension($ext)
     {
+        // if there is no indexer tool, it is never enabled
+        if ($GLOBALS['TL_CONFIG']['searchToolDOC'] == '')
+            return false;
+
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
         return (in_array($ext, array('doc')) && in_array($ext, $arrExts));
     }
+
 
     /**
      * {@inheritdoc}
      */
     public function extract($fileModel)
     {
-        if ($GLOBALS['TL_CONFIG']['searchToolDOC'] == '')
-            return '';
-
+        $objFile = new \File($fileModel->path);
         $arrContent = array();
         $strCommand = $GLOBALS['TL_CONFIG']['searchToolDOC'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'"';
 

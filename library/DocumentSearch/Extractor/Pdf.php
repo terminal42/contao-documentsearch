@@ -27,6 +27,10 @@ class Pdf implements ExtractorInterface
      */
     public function isEnabledForExtension($ext)
     {
+        // if there is no indexer tool, it is never enabled
+        if ($GLOBALS['TL_CONFIG']['searchToolPDF'] == '')
+            return false;
+
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
         return (in_array($ext, array('pdf')) && in_array($ext, $arrExts));
     }
@@ -36,12 +40,10 @@ class Pdf implements ExtractorInterface
      */
     public function extract($fileModel)
     {
-        $strTempFile = TL_ROOT.'/system/tmp/'.md5(print_r($objFile, true));
+        $objFile = new \File($fileModel->path);
+        $strTempFile = TL_ROOT . '/system/tmp/documentsearch_pdf_' . $fileModel->id;
 
         if (!file_exists($strTempFile)) {
-            if ($GLOBALS['TL_CONFIG']['searchToolPDF'] == '')
-                return '';
-
             $strCommand = $GLOBALS['TL_CONFIG']['searchToolPDF'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'" "'.$strTempFile.'"';
 
             system($strCommand, $returnCode);
@@ -52,6 +54,7 @@ class Pdf implements ExtractorInterface
 
         $strContent = file_get_contents($strTempFile);
         unlink($strTempFile);
+
         return $strContent;
     }
 }

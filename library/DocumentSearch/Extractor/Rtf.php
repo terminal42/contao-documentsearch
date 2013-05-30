@@ -37,6 +37,7 @@ class Rtf implements ExtractorInterface
     public function extract($fileModel)
     {
         require_once(TL_ROOT . '/system/modules/documentsearch/tools/rtf/rtfclass.php');
+        $objFile = new \File($fileModel->path);
 
         ob_start();
 
