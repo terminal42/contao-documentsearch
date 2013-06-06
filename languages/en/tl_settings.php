@@ -21,8 +21,10 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_settings']['searchExtensions']		= array('Document extensions to be indexed', 'Please check the extensions you want to include in your search.<br />Extensions not listed here are currently not supported or need additional modules.');
-$GLOBALS['TL_LANG']['tl_settings']['searchDocuments']		= array('Document locations to be indexed', 'Please check the locations you want documents to be found and indexed.');
+$GLOBALS['TL_LANG']['tl_settings']['searchSources']		    = array('Document locations to be indexed', 'Please check the locations you want documents to be found and indexed.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolPDF']			= array('Path to .pdf converter (pdftotext/pdf2ascii)', 'Please enter the absolute path to the PDF converter.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolDOC']			= array('Path to "catdoc" application', 'Please enter the absolute path to the Word document converter.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolPPT']			= array('Path to "ppthtml" application', 'Please enter the absolute path to the PowerPoint converter.');
 
+
+$GLOBALS['TL_LANG']['tl_settings']['searchSources']['ce_dl']	    = 'Content elements "Download" and "Downloads"';
