@@ -27,7 +27,8 @@ class ContentElement extends \Frontend implements SourceInterface
      */
     public function isEnabled()
     {
-        return true;
+        $arrSources = deserialize($GLOBALS['TL_CONFIG']['searchSources'], true);
+        return in_array('ce_dl', $arrSources);
     }
 
     /**
