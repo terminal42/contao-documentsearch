@@ -29,7 +29,7 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['searchExtensions'] = array
 (
 	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchExtensions'],
 	'inputType'		=> 'checkbox',
-	'options'		=> array('pdf', 'doc', 'ppt', 'xls', 'rtf', 'html', 'htm', 'txt', 'csv'),
+	'options'		=> array('pdf', 'doc', 'ppt', 'xls', 'rtf', 'html', 'htm', 'txt', 'csv', 'jpg', 'jpeg', 'gif', 'png'),
 	'eval'			=> array('multiple'=>true, 'tl_class'=>'clr'),
 );
 
