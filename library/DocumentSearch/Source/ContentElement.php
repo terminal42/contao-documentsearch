@@ -67,7 +67,7 @@ class ContentElement extends \Frontend implements SourceInterface
             // index "downloads" elements
             else
             {
-                $collection = \FilesModel::findMultipleByIds($objElements->multiSRC, true);
+                $collection = \FilesModel::findMultipleByIds(deserialize($objElements->multiSRC, true));
 
                 if ($collection === null) {
                     continue;
