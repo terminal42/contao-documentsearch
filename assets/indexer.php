@@ -83,7 +83,7 @@ class DocumentIndexer extends \Frontend
                         'protected'     => (\Input::get('groups') ? '1' : ($pageModel->protected ? '1' : '')),
                         'groups'        => (\Input::get('groups') ? deserialize(rawurldecode(\Input::get('groups'))) : $pageModel->groups),
                         'pid'           => $pageModel->id,
-                        'filesize'      => $objFile->filesize/1024,
+                        'filesize'      => number_format(($objFile->filesize/1024), 2, '.', ''),
                         'language'      => $pageModel->rootLanguage,
                         'content'       => $extractor->extract($fileModel)
                     );
