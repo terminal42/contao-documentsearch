@@ -32,7 +32,7 @@ class Doc implements ExtractorInterface
             return false;
 
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
-        return (in_array($ext, array('doc')) && in_array($ext, $arrExts));
+        return (in_array($ext, array('dot', 'doc', 'docx')) && in_array($ext, $arrExts));
     }
 
 

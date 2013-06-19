@@ -28,7 +28,7 @@ class Xls implements ExtractorInterface
     public function isEnabledForExtension($ext)
     {
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
-        return (in_array($ext, array('xls')) && in_array($ext, $arrExts));
+        return (in_array($ext, array('xls', 'xlsx')) && in_array($ext, $arrExts));
     }
 
     /**
