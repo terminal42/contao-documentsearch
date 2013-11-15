@@ -14,6 +14,7 @@
  * PHP version 5
  * @copyright  terminal42 gmbh 2013
  * @author     Yanick Witschi <yanick.witschi@terminal42.ch>
+ * @author     Kamil Kuzminski <kamil.kuzminski@codefog.pl>
  */
 
 
@@ -38,6 +39,7 @@ $GLOBALS['TL_DOCUMENT_SEARCH']['extractors'] = array (
     'DocumentSearch\Extractor\Ppt',
     'DocumentSearch\Extractor\Rtf',
     'DocumentSearch\Extractor\Text',
+    'DocumentSearch\Extractor\Title',
     'DocumentSearch\Extractor\Xls',
     'DocumentSearch\Extractor\Keywords'
 );

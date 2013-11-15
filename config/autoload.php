@@ -14,6 +14,7 @@
  * PHP version 5
  * @copyright  terminal42 gmbh 2013
  * @author     Yanick Witschi <yanick.witschi@terminal42.ch>
+ * @author     Kamil Kuzminski <kamil.kuzminski@codefog.pl>
  */
 
 /**
@@ -29,6 +30,7 @@ ClassLoader::addClasses(array
     'DocumentSearch\Extractor\Ppt'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Ppt.php',
     'DocumentSearch\Extractor\Rtf'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Rtf.php',
     'DocumentSearch\Extractor\Text'                    => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Text.php',
+    'DocumentSearch\Extractor\Title'                   => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Title.php',
     'DocumentSearch\Extractor\Xls'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Xls.php',
     'DocumentSearch\Extractor\Keywords'                => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Keywords.php',
     'DocumentSearch\Source\ContentElement'             => 'system/modules/documentsearch/library/DocumentSearch/Source/ContentElement.php'
