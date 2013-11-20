@@ -85,7 +85,7 @@ class DocumentIndexer extends \Frontend
                         'pid'           => $pageModel->id,
                         'filesize'      => number_format(($objFile->filesize/1024), 2, '.', ''),
                         'language'      => $pageModel->rootLanguage,
-                        'content'       => $extractor->extract($fileModel)
+                        'content'       => $extractor->extract($fileModel, $pageModel)
                     );
 
                     $extractor->setIndexData($arrData);

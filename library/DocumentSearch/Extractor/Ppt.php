@@ -38,7 +38,7 @@ class Ppt implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($fileModel)
+    public function extract($fileModel, $pageModel)
     {
         $objFile = new \File($fileModel->path);
         $arrContent = array();

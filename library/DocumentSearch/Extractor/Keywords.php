@@ -35,7 +35,7 @@ class Keywords implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($fileModel)
+    public function extract($fileModel, $pageModel)
     {
         // replace commas with spaces so the search engine treats them as separate words
         return str_replace(',',' ', $fileModel->documentsearch_keywords);
