@@ -31,9 +31,10 @@ interface ExtractorInterface
      * Extract the string content from the given file model
      *
      * @param \FilesModel
+     * @param \PageModel
      * @return string
      */
-    public function extract($fileModel);
+    public function extract($fileModel, $pageModel);
 
     /**
      * Normally you won't need this method to do anything but this allows every extractor to modify all the data
