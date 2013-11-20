@@ -57,6 +57,7 @@ class DocumentIndexer extends \Frontend
                 // search file
                 $fileModel = \FilesModel::findByPk(\Input::get('file'));
                 $objFile = new \File($fileModel->path);
+                $strContent = '';
 
                 // Loop over extractors
                 foreach ($GLOBALS['TL_DOCUMENT_SEARCH']['extractors'] as $extractorClass) {
@@ -67,29 +68,36 @@ class DocumentIndexer extends \Frontend
                         continue;
                     }
 
-                    // Title
-                    if (\Input::get('title') !== '') {
-                        $strTitle = \Input::get('title');
-                    } elseif ($pageModel->pageTitle !== '') {
-                        $strTitle = $pageModel->pageTitle;
-                    } else {
-                        $strTitle = $pageModel->title;
-                    }
-
-                    $arrData = array
-                    (
-                        'url'           => \Input::get('url'),
-                        'title'         => $strTitle,
-                        'protected'     => (\Input::get('groups') ? '1' : ($pageModel->protected ? '1' : '')),
-                        'groups'        => (\Input::get('groups') ? deserialize(rawurldecode(\Input::get('groups'))) : $pageModel->groups),
-                        'pid'           => $pageModel->id,
-                        'filesize'      => number_format(($objFile->filesize/1024), 2, '.', ''),
-                        'language'      => $pageModel->rootLanguage,
-                        'content'       => $extractor->extract($fileModel, $pageModel)
-                    );
-
-                    \Search::indexPage($arrData);
+                    $strContent .= $extractor->extract($fileModel, $pageModel);
                 }
+
+                // Could not extract any content
+                if ($strContent == '') {
+                    return;
+                }
+
+                // Title
+                if (\Input::get('title') !== '') {
+                    $strTitle = \Input::get('title');
+                } elseif ($pageModel->pageTitle !== '') {
+                    $strTitle = $pageModel->pageTitle;
+                } else {
+                    $strTitle = $pageModel->title;
+                }
+
+                $arrData = array
+                (
+                    'url'           => \Input::get('url'),
+                    'title'         => $strTitle,
+                    'protected'     => (\Input::get('groups') ? '1' : ($pageModel->protected ? '1' : '')),
+                    'groups'        => (\Input::get('groups') ? deserialize(rawurldecode(\Input::get('groups'))) : $pageModel->groups),
+                    'pid'           => $pageModel->id,
+                    'filesize'      => number_format(($objFile->filesize/1024), 2, '.', ''),
+                    'language'      => $pageModel->rootLanguage,
+                    'content'       => $strContent
+                );
+
+                \Search::indexPage($arrData);
             }
         }
     }
