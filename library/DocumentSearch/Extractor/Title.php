@@ -29,7 +29,9 @@ class Title implements ExtractorInterface
     public function isEnabledForExtension($ext)
     {
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
-        return in_array($ext, $arrExts);
+        $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
+
+        return (in_array('title', $arrContent) && in_array($ext, $arrExts));
     }
 
     /**
@@ -37,7 +39,9 @@ class Title implements ExtractorInterface
      */
     public function extract($fileModel, $pageModel)
     {
-        return '';
+        $arrMeta = $this->getMetaData($fileModel->meta, $pageModel->rootLanguage);
+
+        return (string) $arrMeta['title'];
     }
 
 
@@ -46,15 +50,28 @@ class Title implements ExtractorInterface
      */
     public function setIndexData($data)
     {
-        $objContentElements = \Database::getInstance()->prepare("SELECT * FROM tl_content WHERE type='download' AND pid IN (SELECT id FROM tl_article WHERE pid=?)")
-                                                      ->execute($data['pid']);
-
-        while ($objContentElements->next())
-        {
-            $data['content'] .= ' ' . $objContentElements->linkTitle . ' ' . $objContentElements->titleText;
-        }
-
-        $data['content'] = trim($data['content']);
         return $data;
     }
+
+
+    /**
+	 * Get the meta data from a serialized string
+	 * @param string
+	 * @param string
+	 * @return array
+	 */
+	protected function getMetaData($strData, $strLanguage)
+	{
+		$arrData = deserialize($strData);
+
+		// Convert the language to a locale (see #5678)
+		$strLanguage = str_replace('-', '_', $strLanguage);
+
+		if (!is_array($arrData) || !isset($arrData[$strLanguage]))
+		{
+			return array();
+		}
+
+		return $arrData[$strLanguage];
+	}
 }

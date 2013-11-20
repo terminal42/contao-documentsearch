@@ -28,7 +28,9 @@ class Rtf implements ExtractorInterface
     public function isEnabledForExtension($ext)
     {
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
-        return (in_array($ext, array('rtf')) && in_array($ext, $arrExts));
+        $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
+
+        return (in_array('file', $arrContent) && in_array($ext, array('rtf')) && in_array($ext, $arrExts));
     }
 
     /**

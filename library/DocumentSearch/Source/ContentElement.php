@@ -121,7 +121,7 @@ class ContentElement extends \Frontend implements SourceInterface
             $arrMeta['title'] = specialchars(str_replace('_', ' ', preg_replace('/^[0-9]+_/', '', basename($fileModel->path))));
         }
 
-        return $domain . sprintf('system/modules/documentsearch/assets/indexer.php?file=%s&pid=%s&url=%s&title=%s%s',
+        return $domain . sprintf('system/modules/documentsearch/assets/indexer.php?source=ce_dl&file=%s&pid=%s&url=%s&title=%s%s',
             $fileModel->id,
             $contentElement->page_id,
             $strUrl,

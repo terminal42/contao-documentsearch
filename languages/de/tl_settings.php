@@ -20,12 +20,19 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_settings']['searchExtensions']		        = array('Dateierweiterungen die indexiert werden sollen', 'Bitte wählen Sie die Dateierweiterungen aus welche bei der Suche indexiert werden sollen.<br />Nicht aufgeführte Dateiendungen werden nicht unterstützt oder benötigen zusätzliche Module.');
-$GLOBALS['TL_LANG']['tl_settings']['searchSources']		            = array('Dateiorte die durchsucht werden sollen', 'Bitte wählen Sie die Speicherorte aus, welche bei der Suchindexierung berücksichtigt werden sollen.');
+$GLOBALS['TL_LANG']['tl_settings']['searchExtensions']		        = array('Dateierweiterungen', 'Bitte wählen Sie die Dateierweiterungen aus welche bei der Suche indexiert werden sollen.<br />Nicht aufgeführte Dateiendungen werden nicht unterstützt oder benötigen zusätzliche Module.');
+$GLOBALS['TL_LANG']['tl_settings']['searchSources']		            = array('Dateiorte', 'Bitte wählen Sie die Speicherorte aus, welche bei der Suchindexierung berücksichtigt werden sollen.');
+$GLOBALS['TL_LANG']['tl_settings']['searchContents']		        = array('Dateiinhalte', 'Wählen Sie die Inhaltsquellen, welche bei der Suchindexierung berücksichtigt werden sollen.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolPDF']			        = array('Pfad zum .pdf Konverter (pdftotext/pdf2ascii)', 'Bitte geben Sie den absoluten Pfad zum PDF-Konverter ein.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolDOC']			        = array('Pfad zum "catdoc" Programm', 'Bitte geben Sie den absoluten Pfad zum Word-Dokument Konverter ein.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolPPT']			        = array('Pfad zum "ppthtml" Programm', 'Bitte geben Sie den absoluten Pfad zum PowerPoint-Konverter ein.');
 
 
+/**
+ * References
+ */
 $GLOBALS['TL_LANG']['tl_settings']['searchSources']['ce_dl']	    = 'Inhaltselemente "Download" und "Downloads"';
-
+$GLOBALS['TL_LANG']['tl_settings']['searchContents']['file']	    = 'Dateiinhalt';
+$GLOBALS['TL_LANG']['tl_settings']['searchContents']['keywords']    = 'Schlüsselwörter';
+$GLOBALS['TL_LANG']['tl_settings']['searchContents']['title']       = 'Meta-Titel';
+$GLOBALS['TL_LANG']['tl_settings']['searchContents']['link']        = 'Link-Text (nur für Inhaltselement "Download")';

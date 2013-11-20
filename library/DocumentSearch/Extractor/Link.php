@@ -14,27 +14,24 @@
  * PHP version 5
  * @copyright  terminal42 gmbh 2013
  * @author     Yanick Witschi <yanick.witschi@terminal42.ch>
+ * @author     Kamil Kuzminski <kamil.kuzminski@codefog.pl>
  */
 
 namespace DocumentSearch\Extractor;
 
 use DocumentSearch\ExtractorInterface;
 
-class Ppt implements ExtractorInterface
+class Link implements ExtractorInterface
 {
     /**
      * {@inheritdoc}
      */
     public function isEnabledForExtension($ext)
     {
-        // if there is no indexer tool, it is never enabled
-        if ($GLOBALS['TL_CONFIG']['searchToolPPT'] == '')
-            return false;
-
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
         $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
 
-        return (in_array('file', $arrContent) && in_array($ext, array('ppt'. 'pptx')) && in_array($ext, $arrExts));
+        return (\Input::get('source') == 'ce_dl' && in_array('link', $arrContent) && in_array($ext, $arrExts));
     }
 
     /**
@@ -42,22 +39,16 @@ class Ppt implements ExtractorInterface
      */
     public function extract($fileModel, $pageModel)
     {
-        $objFile = new \File($fileModel->path);
-        $arrContent = array();
-        $strCommand = $GLOBALS['TL_CONFIG']['searchToolPPT'] . ' "'.$objFile->dirname.'/'.$objFile->basename.'"';
+        $strContent = '';
+        $objContentElements = \Database::getInstance()->prepare("SELECT linkTitle, titleText FROM tl_content WHERE type='download' AND singleSRC=? AND pid IN (SELECT id FROM tl_article WHERE pid=?)")
+                                                      ->execute((version_compare(VERSION, '3.2', '<') ? $fileModel->id : $fileModel->uuid), $pageModel->id);
 
-        exec($strCommand, $arrContent, $returnCode);
+        while ($objContentElements->next())
+        {
+            $strContent .= ' ' . $objContentElements->linkTitle . ' ' . $objContentElements->titleText;
+        }
 
-        if ($returnCode != 0)
-            return '';
-
-        // remove unnecessary parts (html header, file name, pptHtml notice, html footer)
-        unset($arrContent[count($arrContent)-1]);
-        unset($arrContent[count($arrContent)-1]);
-        unset($arrContent[0]);
-        unset($arrContent[1]);
-
-        return strip_tags(implode("\n", $arrContent));
+        return $strContent;
     }
 
 

@@ -32,7 +32,9 @@ class Pdf implements ExtractorInterface
             return false;
 
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
-        return (in_array($ext, array('pdf')) && in_array($ext, $arrExts));
+        $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
+
+        return (in_array('file', $arrContent) && in_array($ext, array('pdf')) && in_array($ext, $arrExts));
     }
 
     /**

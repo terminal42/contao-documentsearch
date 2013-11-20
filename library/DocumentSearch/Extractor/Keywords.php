@@ -29,7 +29,9 @@ class Keywords implements ExtractorInterface
     {
         // this one is enabled for all files enabled in the settings
         $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
-        return in_array($ext, $arrExts);
+        $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
+
+        return (in_array('keywords', $arrContent) && in_array($ext, $arrExts));
     }
 
     /**
@@ -38,7 +40,7 @@ class Keywords implements ExtractorInterface
     public function extract($fileModel, $pageModel)
     {
         // replace commas with spaces so the search engine treats them as separate words
-        return str_replace(',',' ', $fileModel->documentsearch_keywords);
+        return str_replace(',', ' ', $fileModel->documentsearch_keywords);
     }
 
 
