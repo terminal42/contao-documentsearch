@@ -39,7 +39,8 @@ $GLOBALS['TL_DOCUMENT_SEARCH']['extractors'] = array (
     'DocumentSearch\Extractor\Ppt',
     'DocumentSearch\Extractor\Rtf',
     'DocumentSearch\Extractor\Text',
-    'DocumentSearch\Extractor\Title',
     'DocumentSearch\Extractor\Xls',
-    'DocumentSearch\Extractor\Keywords'
+    'DocumentSearch\Extractor\Keywords',
+    'DocumentSearch\Extractor\Title',
+    'DocumentSearch\Extractor\Link',
 );

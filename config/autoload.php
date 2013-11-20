@@ -26,6 +26,7 @@ ClassLoader::addClasses(array
     'DocumentSearch\ExtractorInterface'                => 'system/modules/documentsearch/library/DocumentSearch/ExtractorInterface.php',
     'DocumentSearch\SourceInterface'                   => 'system/modules/documentsearch/library/DocumentSearch/SourceInterface.php',
     'DocumentSearch\Extractor\Doc'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Doc.php',
+    'DocumentSearch\Extractor\Link'                    => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Link.php',
     'DocumentSearch\Extractor\Pdf'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Pdf.php',
     'DocumentSearch\Extractor\Ppt'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Ppt.php',
     'DocumentSearch\Extractor\Rtf'                     => 'system/modules/documentsearch/library/DocumentSearch/Extractor/Rtf.php',
