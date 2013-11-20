@@ -20,7 +20,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_settings']['searchExtensions']		= array('Document extensions', 'Please check the extensions you want to include in your search.<br />Extensions not listed here are currently not supported or need additional modules.');
+$GLOBALS['TL_LANG']['tl_settings']['searchExtensions']		= array('Document extensions', 'Please enter a comma separated list of file extensions you want to include in your search.');
 $GLOBALS['TL_LANG']['tl_settings']['searchSources']		    = array('Document locations', 'Please check the locations you want documents to be found and indexed.');
 $GLOBALS['TL_LANG']['tl_settings']['searchContents']		= array('Document content sources', 'Please check the sources you want to use for the document content.');
 $GLOBALS['TL_LANG']['tl_settings']['searchToolPDF']			= array('Path to .pdf converter (pdftotext/pdf2ascii)', 'Please enter the absolute path to the PDF converter.');

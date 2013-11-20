@@ -28,7 +28,7 @@ class Keywords implements ExtractorInterface
     public function isEnabledForExtension($ext)
     {
         // this one is enabled for all files enabled in the settings
-        $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
+        $arrExts = trimsplit(',', $GLOBALS['TL_CONFIG']['searchExtensions']);
         $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
 
         return (in_array('keywords', $arrContent) && in_array($ext, $arrExts));

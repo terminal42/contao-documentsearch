@@ -31,7 +31,7 @@ class Ppt implements ExtractorInterface
         if ($GLOBALS['TL_CONFIG']['searchToolPPT'] == '')
             return false;
 
-        $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
+        $arrExts = trimsplit(',', $GLOBALS['TL_CONFIG']['searchExtensions']);
         $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
 
         return (in_array('file', $arrContent) && in_array($ext, array('ppt'. 'pptx')) && in_array($ext, $arrExts));

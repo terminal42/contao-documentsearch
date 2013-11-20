@@ -31,7 +31,7 @@ class Doc implements ExtractorInterface
         if ($GLOBALS['TL_CONFIG']['searchToolDOC'] == '')
             return false;
 
-        $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
+        $arrExts = trimsplit(',', $GLOBALS['TL_CONFIG']['searchExtensions']);
         $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
 
         return (in_array('file', $arrContent) && in_array($ext, array('dot', 'doc', 'docx')) && in_array($ext, $arrExts));

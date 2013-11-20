@@ -28,19 +28,9 @@ $GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] = str_replace('indexPro
 $GLOBALS['TL_DCA']['tl_settings']['fields']['searchExtensions'] = array
 (
 	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchExtensions'],
-	'inputType'		=> 'checkbox',
-	'options'		=> array('pdf', 'dot', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'rtf', 'html', 'htm', 'txt', 'csv', 'jpg', 'jpeg', 'gif', 'png'),
-    'reference'     => &$GLOBALS['TL_LANG']['tl_settings']['searchExtensions'],
-	'eval'			=> array('multiple'=>true, 'tl_class'=>'clr'),
-);
-
-$GLOBALS['TL_DCA']['tl_settings']['fields']['searchContents'] = array
-(
-	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchContents'],
-	'inputType'		=> 'checkbox',
-	'options'		=> array('file', 'keywords', 'title', 'link'),
-	'reference'		=> &$GLOBALS['TL_LANG']['tl_settings']['searchContents'],
-	'eval'			=> array('multiple'=>true, 'tl_class'=>'clr'),
+	'default'		=> 'pdf,dot,doc,docx,ppt,pptx,xls,xlsx,rtf,html,htm,txt,csv,jpg,jpeg,gif,png',
+	'inputType'		=> 'text',
+	'eval'			=> array('tl_class'=>'clr long'),
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['searchSources'] = array
@@ -49,7 +39,16 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['searchSources'] = array
 	'inputType'		=> 'checkbox',
 	'options'		=> array('ce_dl'),
 	'reference'		=> &$GLOBALS['TL_LANG']['tl_settings']['searchSources'],
-	'eval'			=> array('multiple'=>true, 'tl_class'=>'clr'),
+	'eval'			=> array('multiple'=>true, 'tl_class'=>'clr w50" style="height:auto'),
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['searchContents'] = array
+(
+	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchContents'],
+	'inputType'		=> 'checkbox',
+	'options'		=> array('file', 'keywords', 'title', 'link'),
+	'reference'		=> &$GLOBALS['TL_LANG']['tl_settings']['searchContents'],
+	'eval'			=> array('multiple'=>true, 'tl_class'=>'w50" style="height:auto'),
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['searchToolPDF'] = array

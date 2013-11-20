@@ -28,7 +28,7 @@ class Link implements ExtractorInterface
      */
     public function isEnabledForExtension($ext)
     {
-        $arrExts = deserialize($GLOBALS['TL_CONFIG']['searchExtensions'], true);
+        $arrExts = trimsplit(',', $GLOBALS['TL_CONFIG']['searchExtensions']);
         $arrContent = deserialize($GLOBALS['TL_CONFIG']['searchContents'], true);
 
         return (\Input::get('source') == 'ce_dl' && in_array('link', $arrContent) && in_array($ext, $arrExts));
