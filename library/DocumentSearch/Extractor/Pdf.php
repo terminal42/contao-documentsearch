@@ -59,13 +59,4 @@ class Pdf implements ExtractorInterface
 
         return $strContent;
     }
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIndexData($data)
-    {
-        return $data;
-    }
 }

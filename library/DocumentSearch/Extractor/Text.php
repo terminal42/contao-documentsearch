@@ -41,13 +41,4 @@ class Text implements ExtractorInterface
         $objFile = new \File($fileModel->path);
         return $objFile->getContent();
     }
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIndexData($data)
-    {
-        return $data;
-    }
 }

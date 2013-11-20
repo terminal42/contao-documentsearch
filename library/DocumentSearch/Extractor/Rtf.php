@@ -54,13 +54,4 @@ class Rtf implements ExtractorInterface
 
         return $strBuffer;
     }
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIndexData($data)
-    {
-        return $data;
-    }
 }

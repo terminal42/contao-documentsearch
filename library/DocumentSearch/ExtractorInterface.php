@@ -35,13 +35,4 @@ interface ExtractorInterface
      * @return string
      */
     public function extract($fileModel, $pageModel);
-
-    /**
-     * Normally you won't need this method to do anything but this allows every extractor to modify all the data
-     * again before it is actually sent to \Search::indexPage()
-     *
-     * @param array
-     * @return array
-     */
-    public function setIndexData($arrData);
 }

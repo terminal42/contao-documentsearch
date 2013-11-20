@@ -59,13 +59,4 @@ class Ppt implements ExtractorInterface
 
         return strip_tags(implode("\n", $arrContent));
     }
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIndexData($data)
-    {
-        return $data;
-    }
 }

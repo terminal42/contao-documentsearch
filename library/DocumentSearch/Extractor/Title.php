@@ -46,15 +46,6 @@ class Title implements ExtractorInterface
 
 
     /**
-     * {@inheritdoc}
-     */
-    public function setIndexData($data)
-    {
-        return $data;
-    }
-
-
-    /**
 	 * Get the meta data from a serialized string
 	 * @param string
 	 * @param string

@@ -54,12 +54,4 @@ class Doc implements ExtractorInterface
 
         return implode("\n", $arrContent);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIndexData($data)
-    {
-        return $data;
-    }
 }

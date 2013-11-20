@@ -88,8 +88,6 @@ class DocumentIndexer extends \Frontend
                         'content'       => $extractor->extract($fileModel, $pageModel)
                     );
 
-                    $extractor->setIndexData($arrData);
-
                     \Search::indexPage($arrData);
                 }
             }
