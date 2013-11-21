@@ -34,4 +34,5 @@ $GLOBALS['TL_LANG']['tl_settings']['searchSources']['ce_dl']	    = 'Content elem
 $GLOBALS['TL_LANG']['tl_settings']['searchContents']['file']	    = 'File content';
 $GLOBALS['TL_LANG']['tl_settings']['searchContents']['keywords']    = 'Keywords';
 $GLOBALS['TL_LANG']['tl_settings']['searchContents']['title']       = 'Meta title';
+$GLOBALS['TL_LANG']['tl_settings']['searchContents']['filename']    = 'File name';
 $GLOBALS['TL_LANG']['tl_settings']['searchContents']['link']        = 'Link text (only for content element "Download")';

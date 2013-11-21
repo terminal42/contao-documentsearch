@@ -46,7 +46,7 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['searchContents'] = array
 (
 	'label'			=> &$GLOBALS['TL_LANG']['tl_settings']['searchContents'],
 	'inputType'		=> 'checkbox',
-	'options'		=> array('file', 'keywords', 'title', 'link'),
+	'options'		=> array('file', 'keywords', 'title', 'filename', 'link'),
 	'reference'		=> &$GLOBALS['TL_LANG']['tl_settings']['searchContents'],
 	'eval'			=> array('multiple'=>true, 'tl_class'=>'w50" style="height:auto'),
 );
