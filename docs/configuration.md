@@ -37,6 +37,7 @@ There are multiple places where the search keywords can be taken from.
 2. **Keywords** is a custom field in the file manager. Edit a file and you
 	can enter keywords for the search index.
 3. **Meta title** takes the title for the page language from the file settings.
+3. **File name** takes the raw file name for the search index.
 4. **Link text** reads the link text and title from content elements of type "download".
 
 Be aware that all content sources are combined if possible.
